@@ -30,6 +30,15 @@ app.post("/todos", async (req, res)=> {
 });
 
 //metodo para listar all todos
+app.get("/", async(req, res)=> {
+    try {
+        res.status(200).send('Servidor Run');
+    } catch (error) {
+        res.status(400).json(error)
+    }
+});
+
+//metodo para listar all todos
 app.get("/todos", async(req, res)=> {
     try {
         const toDos = await Todo.findAll();
