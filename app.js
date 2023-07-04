@@ -1,7 +1,7 @@
 const express = require('express');
 const db = require('./src/utils/databases');
 const Todo = require('./src/models/todos.model');
-
+const cors = require('cors');
 require('dotenv').config();
 
 const PORT = process.env.DB_PORT_SERVER ?? 8000;
@@ -15,7 +15,7 @@ db.sync();
 const app = express();
 
 app.use(express.json());
-
+app.use(cors());
 //metodo para crear todo
 app.post("/todos", async (req, res)=> {
     try {
