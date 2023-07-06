@@ -69,10 +69,17 @@ app.put("/todos/:id", async(req, res)=> {
             await Todo.update({title}, {
                 where: {id}
             });
-        }else{
+        }else if(status){
             await Todo.update({status}, {
                 where: {id}
             });
+        }else if(title && status){
+            await Todo.update({title, status}, {
+                where: {id}
+            });
+        }else{
+            res.status(400).json({info:'ingrese datos a actualizar'})
+            return
         }
        
         res.status(200).json({status:'correct'})
